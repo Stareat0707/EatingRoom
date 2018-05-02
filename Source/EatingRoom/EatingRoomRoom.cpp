@@ -20,6 +20,7 @@ AEatingRoomRoom::AEatingRoomRoom()
 	PointLightComponent = CreateDefaultSubobject<UPointLightComponent>(TEXT("PointLight"));
 	PointLightComponent->SetupAttachment(RootComponent);
 	PointLightComponent->SetRelativeLocation(FVector(0.f, 0.f, 170.f));
+	PointLightComponent->SetLightColor(FLinearColor::Green);
 	
 	// Create a BoxComponent
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("Box"));
@@ -44,7 +45,8 @@ void AEatingRoomRoom::Tick(float DeltaTime)
 }
 
 // Called when box overlapped
-void AEatingRoomRoom::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AEatingRoomRoom::OnBoxBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	GLog->Log(TEXT("Hello!"));
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::Blue, TEXT("Hello!"));
+	PointLightComponent->SetLightColor(FLinearColor::Blue);
 }
